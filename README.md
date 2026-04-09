@@ -17,6 +17,10 @@
 
 ![baReminder screenshot 2](images/image2.png)
 
+![baReminder screenshot 3](images/image3.png)
+
+![baReminder screenshot 4](images/image4.png)
+
 ## Installation
 
 ```bash
