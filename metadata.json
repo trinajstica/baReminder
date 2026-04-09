@@ -1,0 +1,18 @@
+{
+    "name": "baReminder",
+    "description": "Multi-reminder manager with date/time scheduling, stored in JSON. Set multiple reminders and get notified on time.",
+    "uuid": "baReminder@barko.generacija.si",
+    "url": "https://github.com/trinajstica/baReminder",
+    "gettext-domain": "baReminder",
+    "settings-schema": "org.gnome.shell.extensions.bareminder",
+    "shell-version": [
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52"
+    ]
+}

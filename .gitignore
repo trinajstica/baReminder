@@ -1,0 +1,12 @@
+# Git ignore for GNOME Shell extension
+*.swp
+*.swo
+*~
+.DS_Store
+.idea/
+.vscode/
+node_modules/
+*.log
+
+# Local install directory
+.local/share/gnome-shell/extensions/baReminder@barko.generacija.si/
