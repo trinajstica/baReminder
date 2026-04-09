@@ -11,6 +11,12 @@
 - Automatic reminder list refresh
 - Supports GNOME Shell 45 through 52
 
+## Screenshots
+
+![baReminder screenshot 1](images/image1.png)
+
+![baReminder screenshot 2](images/image2.png)
+
 ## Installation
 
 ```bash
