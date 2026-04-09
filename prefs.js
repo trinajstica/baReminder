@@ -337,6 +337,36 @@ export default class baReminderPreferences extends ExtensionPreferences {
             Gio.SettingsBindFlags.DEFAULT
         );
         notifGroup.add(autoCloseSecondsRow);
+
+        // ── Version page ─────────────────────────────────────────────────
+        const versionPage = new Adw.PreferencesPage({
+            title: _('Version'),
+            icon_name: 'dialog-information-symbolic',
+        });
+        window.add(versionPage);
+
+        const versionGroup = new Adw.PreferencesGroup({
+            title: _('About baReminder'),
+            description: _('Version details and author information.'),
+        });
+        versionPage.add(versionGroup);
+
+        versionGroup.add(new Adw.ActionRow({
+            title: _('Author'),
+            subtitle: 'Boris Arko - BArko',
+        }));
+        versionGroup.add(new Adw.ActionRow({
+            title: _('Programmer'),
+            subtitle: 'SimOne',
+        }));
+        versionGroup.add(new Adw.ActionRow({
+            title: _('Year'),
+            subtitle: '2026',
+        }));
+        versionGroup.add(new Adw.ActionRow({
+            title: _('Version'),
+            subtitle: '1.00.1',
+        }));
     }
 
     _soundLabel(settings) {
