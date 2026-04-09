@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
-# uninstall.sh – odstrani baReminder GNOME razširitev
+# uninstall.sh – remove baReminder GNOME extension
 set -euo pipefail
 
 UUID="baReminder@barko.generacija.si"
 INSTALL_DIR="${HOME}/.local/share/gnome-shell/extensions/${UUID}"
 
-# Onemogoči razširitev, če je nameščena
+# Disable the extension if it is installed
 if command -v gnome-extensions &>/dev/null; then
     if gnome-extensions list 2>/dev/null | grep -q "^${UUID}$"; then
-        echo "Onemogočam razširitev…"
+        echo "Disabling extension…"
         gnome-extensions disable "${UUID}" || true
     fi
 fi
 
-# Odstrani namestitveni direktorij
+# Remove the installation directory
 if [[ -d "${INSTALL_DIR}" ]]; then
-    echo "Odstranjujem ${INSTALL_DIR}…"
+    echo "Removing ${INSTALL_DIR}…"
     rm -rf "${INSTALL_DIR}"
-    echo "Razširitev odstranjena."
+    echo "Extension removed."
 else
-    echo "Razširitev ni nameščena (${INSTALL_DIR} ne obstaja)."
+    echo "Extension is not installed (${INSTALL_DIR} does not exist)."
 fi
 
 echo ""
-echo "Za popolno uveljavitev se odjavite in prijavite (Wayland)."
+echo "For full effect, log out and log back in (Wayland)."
