@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.bareminder"
+          path="/org/gnome/shell/extensions/bareminder/">
+
+    <!-- JSON string containing the array of all reminders -->
+    <key name="reminders-json" type="s">
+      <default>''</default>
+      <summary>Reminders JSON</summary>
+      <description>JSON array of reminder objects {id, title, datetime, message, enabled}</description>
+    </key>
+
+    <!-- Notification sound toggle -->
+    <key name="play-sound" type="b">
+      <default>false</default>
+      <summary>Play sound on notification</summary>
+    </key>
+
+    <!-- Path to custom sound file (URI) -->
+    <key name="sound-file-path" type="s">
+      <default>'file:///usr/share/sounds/freedesktop/stereo/message.oga'</default>
+      <summary>Sound file path</summary>
+    </key>
+
+    <!-- Auto-close notification after timeout -->
+    <key name="auto-close" type="b">
+      <default>true</default>
+      <summary>Auto close reminder notification</summary>
+    </key>
+
+    <!-- Auto-close timeout in seconds -->
+    <key name="auto-close-seconds" type="i">
+      <default>10</default>
+      <summary>Auto close timeout in seconds</summary>
+      <range min="3" max="60"/>
+    </key>
+
+  </schema>
+</schemalist>

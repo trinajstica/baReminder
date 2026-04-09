@@ -1,0 +1,161 @@
+/* ── Panel icon & badge ────────────────────────────────────────────────────── */
+
+.barem-panel-icon {
+    icon-size: 16px;
+}
+
+.barem-badge {
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    background-color: #e01b24;
+    border-radius: 8px;
+    padding: 0 4px;
+    margin: 2px 0 0 2px;
+    min-width: 14px;
+    min-height: 14px;
+}
+
+/* ── Panel popup header ────────────────────────────────────────────────────── */
+
+.barem-header-box {
+    padding: 6px 4px;
+}
+
+.barem-header-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* ── Scrollable reminder list ──────────────────────────────────────────────── */
+
+.barem-scroll {
+    max-height: 320px;
+    min-width: 360px;
+}
+
+/* ── Reminder rows in the popup ────────────────────────────────────────────── */
+
+.barem-reminder-row {
+    padding: 4px 6px;
+}
+
+.barem-reminder-row-past {
+    padding: 4px 6px;
+    opacity: 0.55;
+}
+
+.barem-row-box {
+    spacing: 8px;
+}
+
+.barem-row-label {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.barem-row-label-muted {
+    font-size: 13px;
+    font-weight: normal;
+    color: #9a9996;
+    text-decoration: line-through;
+}
+
+.barem-row-message {
+    font-size: 11px;
+    color: #77767b;
+    margin-top: 2px;
+}
+
+/* ── Toggle dots ───────────────────────────────────────────────────────────── */
+
+.barem-toggle {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+    border: 1px solid #77767b;
+}
+
+.barem-toggle-on {
+    background-color: #3584e4;
+    border-color: #1c71d8;
+}
+
+.barem-toggle-off {
+    background-color: #3d3846;
+    border-color: #5e5c64;
+}
+
+/* ── Delete button in popup list ───────────────────────────────────────────── */
+
+.barem-delete-btn {
+    font-size: 12px;
+    color: #c01c28;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.barem-delete-btn:hover {
+    background-color: rgba(192,28,40,0.15);
+}
+
+/* ── Empty list placeholder ────────────────────────────────────────────────── */
+
+.barem-empty-label {
+    color: #9a9996;
+    font-style: italic;
+    padding: 8px;
+}
+
+/* ── Full-screen notification overlay ─────────────────────────────────────── */
+
+.barem-notification-box {
+    background-color: rgba(28, 28, 28, 0.92);
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 32px 40px;
+    spacing: 16px;
+    min-width: 360px;
+    max-width: 640px;
+}
+
+.barem-notification-title {
+    font-size: 38px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+}
+
+.barem-notification-message {
+    font-size: 22px;
+    color: #deddda;
+    text-align: center;
+}
+
+.barem-notification-countdown {
+    font-size: 14px;
+    color: #77767b;
+    text-align: center;
+}
+
+.barem-notification-close {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1c1c1c;
+    background-color: #f6f5f4;
+    border-radius: 8px;
+    padding: 8px 24px;
+    border: none;
+    box-shadow: none;
+}
+
+.barem-notification-close:hover {
+    background-color: #deddda;
+}
+
+.barem-notification-close:active {
+    background-color: #c0bfbc;
+}
