@@ -60,8 +60,8 @@ function playSound(settings) {
         const file = Gio.File.new_for_uri(uri);
         if (!file.query_exists(null)) return null;
         return Gio.Subprocess.new(
-            ['paplay', file.get_path()],
-            Gio.SubprocessFlags.NONE
+            ['gst-play-1.0', '--no-interactive', file.get_path()],
+            Gio.SubprocessFlags.STDOUT_SILENCE | Gio.SubprocessFlags.STDERR_SILENCE
         );
     } catch (_e) {
         return null;
@@ -156,6 +156,7 @@ class ReminderPanelButton extends PanelMenu.Button {
         this.add_child(this._badge);
 
         this._buildMenu();
+        this._rowSignalIds = [];
 
         // Rebuild the list whenever the stored JSON changes.
         this._settingsChangedId = this._settings.connect(
@@ -218,6 +219,12 @@ class ReminderPanelButton extends PanelMenu.Button {
     }
 
     _rebuildList() {
+        if (this._rowSignalIds) {
+            for (const [actor, id] of this._rowSignalIds) {
+                if (actor && id) actor.disconnect(id);
+            }
+            this._rowSignalIds = [];
+        }
         this._listSection.removeAll();
 
         const reminders = loadReminders(this._settings);
@@ -265,7 +272,7 @@ class ReminderPanelButton extends PanelMenu.Button {
                     : 'barem-toggle barem-toggle-off',
                 y_align: Clutter.ActorAlign.CENTER,
             });
-            toggleBtn.connect('clicked', () => {
+            const toggleId = toggleBtn.connect('clicked', () => {
                 reminder.enabled = !reminder.enabled;
                 const all = loadReminders(this._settings);
                 const idx = all.findIndex(r => r.id === reminder.id);
@@ -273,6 +280,7 @@ class ReminderPanelButton extends PanelMenu.Button {
                 saveReminders(this._settings, all);
                 // scheduler refresh is triggered via settings-changed
             });
+            this._rowSignalIds.push([toggleBtn, toggleId]);
 
             // Reminder text
             const textBox = new St.BoxLayout({ vertical: true, x_expand: true });
@@ -298,13 +306,14 @@ class ReminderPanelButton extends PanelMenu.Button {
                 style_class: 'barem-delete-btn',
                 y_align: Clutter.ActorAlign.CENTER,
             });
-            delBtn.connect('clicked', () => {
+            const deleteId = delBtn.connect('clicked', () => {
                 const all = loadReminders(this._settings);
                 saveReminders(
                     this._settings,
                     all.filter(r => r.id !== reminder.id)
                 );
             });
+            this._rowSignalIds.push([delBtn, deleteId]);
 
             rowBox.add_child(toggleBtn);
             rowBox.add_child(textBox);

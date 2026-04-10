@@ -67,6 +67,7 @@ const ReminderRow = GObject.registerClass({
         this._reminderId = reminder.id;
         this._settings = settings;
         this._onChanged = onChanged;
+        this._signalIds = [];
 
         this.set_title(reminder.title || _('(no title)'));
         this.set_subtitle(
@@ -80,10 +81,11 @@ const ReminderRow = GObject.registerClass({
             active: reminder.enabled,
             valign: Gtk.Align.CENTER,
         });
-        enableSwitch.connect('state-set', (_sw, state) => {
+        const enableId = enableSwitch.connect('state-set', (_sw, state) => {
             this._updateField('enabled', state);
             return false;
         });
+        this._signalIds.push([enableSwitch, enableId]);
         this.add_prefix(enableSwitch);
 
         // Delete button on the right
@@ -93,7 +95,7 @@ const ReminderRow = GObject.registerClass({
             css_classes: ['destructive-action', 'flat'],
             tooltip_text: _('Delete reminder'),
         });
-        delBtn.connect('clicked', () => {
+        const deleteId = delBtn.connect('clicked', () => {
             const all = loadReminders(this._settings);
             saveReminders(
                 this._settings,
@@ -101,7 +103,18 @@ const ReminderRow = GObject.registerClass({
             );
             this._onChanged();
         });
+        this._signalIds.push([delBtn, deleteId]);
         this.add_suffix(delBtn);
+    }
+
+    destroy() {
+        if (this._signalIds) {
+            for (const [actor, id] of this._signalIds) {
+                if (actor && id) actor.disconnect(id);
+            }
+            this._signalIds = null;
+        }
+        super.destroy();
     }
 
     _updateField(field, value) {
@@ -365,7 +378,7 @@ export default class baReminderPreferences extends ExtensionPreferences {
         }));
         versionGroup.add(new Adw.ActionRow({
             title: _('Version'),
-            subtitle: '1.00.1',
+            subtitle: '1.00.4',
         }));
     }
 
